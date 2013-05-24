@@ -688,6 +688,7 @@ JustGage.prototype.refresh = function(val, max) {
 
   var obj = this;
   var displayVal, color, max = max || null;
+  var min = min || null;
 
   // set new max
   if(max !== null) {
@@ -697,6 +698,14 @@ JustGage.prototype.refresh = function(val, max) {
     if( obj.config.humanFriendly ) obj.txtMaximum = humanFriendlyNumber( obj.config.max, obj.config.humanFriendlyDecimal );
     obj.txtMax.attr({"text" : obj.txtMaximum});
     setDy(obj.txtMax, obj.params.maxFontSize, obj.params.maxY);
+  }
+
+  if(min !== null) {
+    obj.config.min = min;
+    obj.txtMinimum = obj.config.min;
+    if( obj.config.humanFriendly ) obj.txtMinimum = humanFriendlyNumber( obj.config.min, obj.config.humanFriendlyDecimal )
+    obj.txtMin.attr({"text": obj.txtMinimum});
+    setDy(obj.txtMin, obj.params.minFontSize, obj.params.minY);
   }
 
   // overflow values
